@@ -8,138 +8,160 @@
         <div class="container lg:pt-[134px] pt-24 pb-10 relative">
             <div class="main-content w-full h-full flex flex-col items-center justify-center relative z-[1]">
                 <div class="text-content">
-                    <div class="heading2 text-center">IPhone</div>
+                    <div class="heading2 text-center">{{ $brand??'' }}</div>
                     <div class="link flex items-center justify-center gap-1 caption1 mt-3">
-                        <a href="index.html">Домашняя страница</a>
+                        <a href={{ route('main') }}>Домашняя страница</a>
                         <i class="ph ph-caret-right text-sm text-secondary2"></i>
-                        <div class="text-secondary2 capitalize">IPhone</div>
+
+                        @if ($brand && $series && $generation)
+                            <a href={{ route('shope', ['brand' => $brand])}}>{{ $brand }}</a>
+                            <i class="ph ph-caret-right text-sm text-secondary2"></i>
+                            <a href={{ route('shope', ['brand' => $brand, 'series' => $series])}}>{{ $series }}</a>
+                            <i class="ph ph-caret-right text-sm text-secondary2"></i>
+                            <div class="text-secondary2 capitalize">{{ $generation }} </div>
+
+                        @elseif ($brand && $series)
+                            <a href={{ route('shope', ['brand' => $brand])}}>{{ $brand }}</a>
+                            <i class="ph ph-caret-right text-sm text-secondary2"></i>
+                            <div class="text-secondary2 capitalize">{{ $series }} </div>
+                        
+                        @else
+                            <div class="text-secondary2 capitalize">{{ $brand }} </div>
+                        @endif
+                      
                     </div>
                 </div>
-            </div>
-            <div class="bg-img absolute top-2 -right-6 max-lg:bottom-0 max-lg:top-auto w-1/3 max-lg:w-[26%] z-[0] max-sm:w-[45%]">
-                <img src="/assets/images/title/iphone.webp" alt="img" class="" />
             </div>
         </div>
     </div>
 </div>
 
-<br>
 
-<br>
-<div class="list-product-block style-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 justify-center">
+<div class="news-block">
+    <div class="container">
+        {{-- <div class="heading3 text-center">News insight</div> --}}
+            <div class="list-blog grid lg:grid-cols-4 sm:grid-cols-2 md:gap-[30px] gap-4 md:mt-10 mt-6">
 
-    <!-- Карточка 1  300x400 px или 400x500 px -->
-    <div class="product-item group w-full max-w-xs"> <!-- max-w-xs = ~320px -->
-        <div class="flex gap-4"> <!-- уменьшили gap между изображением и текстом -->
-            <div class="product-img relative overflow-hidden rounded-lg w-24 h-24"> <!-- фиксированная маленькая картинка -->
-                <img
-                    src="/assets/images/title/iphone.webp"
-                    alt="Casual T-Shirt"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div class="action-btns absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button class="w-7 h-7 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-100">
-                        <i class="ph ph-heart text-xs text-secondary2"></i>
-                    </button>
-                    <button class="w-7 h-7 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-100">
-                        <i class="ph ph-shopping-cart text-xs text-secondary2"></i>
-                    </button>
-                </div>
-                <div class="sale-tag absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-1 py-0.5 rounded">
-                    -20%
-                </div>
-            </div>
+                @foreach ($phones as $phone)
+                    
+                    <a href="#" class="blog-item style-one h-full cursor-pointer max-lg:hidden max-sm:block">
+                        <div class="blog-main h-full block">
+                            <div class="blog-thumb rounded-[20px] overflow-hidden">
+                                <img src={{ asset('storage/'.$phone->image) }} alt="blog-img" class="w-full duration-500" />
+                            </div>
+                            <div class="blog-infor mt-3 text-center">
+                                <div class="heading6 blog-title mt-3 duration-300"> {{ $phone->brand }} {{ $phone->series }} {{ $phone->generation }} {{ $phone->variant }}  </div>
+                                <div class="blog-tag bg-green py-1 px-2.5 rounded-full text-button-uppercase inline-block">{{ $phone->price }} ₽</div>
+                                
+                                {{-- <div class="flex items-center gap-2 mt-2">
+                                    <div class="blog-author caption1 text-secondary">by Leona Pablo</div>
+                                    <span class="w-[20px] h-[1px] bg-black"></span>
+                                    <div class="blog-date caption1 text-secondary">Dec 10, 2024</div>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
 
-            <div class="product-info flex-1 min-w-0"> <!-- min-w-0 чтобы текст не вылезал -->
-                <div class="category caption2 text-secondary2 truncate">T-Shirt</div>
-                <h3 class="title heading6 mt-1 truncate">
-                    <a href="#" class="hover:text-primary transition-colors">Casual Cotton T-Shirt</a>
-                </h3>
-                <div class="price mt-1 flex items-center gap-1">
-                    <span class="heading6 font-bold text-primary">$24.99</span>
-                    <span class="caption2 text-secondary2 line-through">$31.99</span>
-                </div>
-                <div class="rating flex items-center mt-1">
-                    <div class="flex text-amber-400">
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph ph-star text-xs"></i>
-                    </div>
-                    <span class="caption2 text-secondary2 ml-1">(42)</span>
-                </div>
-                <div class="mt-2">
-                    <button class="btn btn-primary py-1 px-3 rounded-full text-xs font-medium">
-                        Add to Cart
-                    </button>
-                </div>
             </div>
         </div>
     </div>
-
-    <!-- Карточка 2 -->
-    <div class="product-item group w-full max-w-xs">
-        <!-- Повторите структуру выше -->
-               <div class="flex gap-4"> <!-- уменьшили gap между изображением и текстом -->
-            <div class="product-img relative overflow-hidden rounded-lg w-24 h-24"> <!-- фиксированная маленькая картинка -->
-                <img
-                    src="/assets/images/title/iphone.webp"
-                    alt="Casual T-Shirt"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div class="action-btns absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button class="w-7 h-7 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-100">
-                        <i class="ph ph-heart text-xs text-secondary2"></i>
-                    </button>
-                    <button class="w-7 h-7 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-100">
-                        <i class="ph ph-shopping-cart text-xs text-secondary2"></i>
-                    </button>
-                </div>
-                <div class="sale-tag absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-1 py-0.5 rounded">
-                    -20%
-                </div>
-            </div>
-
-            <div class="product-info flex-1 min-w-0"> <!-- min-w-0 чтобы текст не вылезал -->
-                <div class="category caption2 text-secondary2 truncate">T-Shirt</div>
-                <h3 class="title heading6 mt-1 truncate">
-                    <a href="#" class="hover:text-primary transition-colors">Casual Cotton T-Shirt</a>
-                </h3>
-                <div class="price mt-1 flex items-center gap-1">
-                    <span class="heading6 font-bold text-primary">$24.99</span>
-                    <span class="caption2 text-secondary2 line-through">$31.99</span>
-                </div>
-                <div class="rating flex items-center mt-1">
-                    <div class="flex text-amber-400">
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph-fill ph-star text-xs"></i>
-                        <i class="ph ph-star text-xs"></i>
-                    </div>
-                    <span class="caption2 text-secondary2 ml-1">(42)</span>
-                </div>
-                <div class="mt-2">
-                    <button class="btn btn-primary py-1 px-3 rounded-full text-xs font-medium">
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Карточка 3 -->
-    <div class="product-item group w-full max-w-xs">
-        <!-- ... -->
-    </div>
-
-    <!-- Карточка 4 -->
-    <div class="product-item group w-full max-w-xs">
-        <!-- ... -->
-    </div>
-
 </div>
-<br>
-<br>
+
+
+<div class="list-recent mt-8">
+    <div class="heading6">Recently viewed phones</div>
+    <div class="list-product pb-5 hide-product-sold grid xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 md:gap-[30px] gap-4 mt-4">
+        @foreach ($phones as $phone)
+            <div class="product-item grid-type" data-item="{{ $phone->id }}">
+                <div class="product-main cursor-pointer block">
+                    <!-- Thumbnail -->
+                    <div class="product-thumb bg-white relative overflow-hidden rounded-2xl">
+                        <!-- Optional "New" tag (you can conditionally show it) -->
+                        @if($phone->is_new)
+                            <div class="product-tag text-button-uppercase bg-green px-3 py-0.5 inline-block rounded-full absolute top-3 left-3 z-[1]">New</div>
+                        @endif
+
+                        <!-- Action buttons (Wishlist, Compare) -->
+                        <div class="list-action-right absolute top-3 right-3 max-lg:hidden">
+                            <div class="add-wishlist-btn w-[32px] h-[32px] flex items-center justify-center rounded-full bg-white duration-300 relative">
+                                <div class="tag-action bg-black text-white caption2 px-1.5 py-0.5 rounded-sm">Add To Wishlist</div>
+                                <i class="ph ph-heart text-lg"></i>
+                            </div>
+                            <div class="compare-btn w-[32px] h-[32px] flex items-center justify-center rounded-full bg-white duration-300 relative mt-2">
+                                <div class="tag-action bg-black text-white caption2 px-1.5 py-0.5 rounded-sm">Compare Product</div>
+                                <i class="ph ph-arrow-counter-clockwise text-lg compare-icon"></i>
+                                <i class="ph ph-check-circle text-lg checked-icon"></i>
+                            </div>
+                        </div>
+
+                        <!-- Product images (main + hover) -->
+                        <div class="product-img w-full h-full aspect-[3/4]">
+                            <img class="w-full h-full object-cover duration-700" src="{{ asset('storage/' . $phone->image) }}" alt="{{ $phone->brand }} {{ $phone->model }}" />
+                            <!-- Fallback or second image — if you have one, e.g., $phone->image_hover -->
+                            <img class="w-full h-full object-cover duration-700" src="{{ asset('storage/' . $phone->image) }}" alt="{{ $phone->brand }} {{ $phone->model }}" />
+                        </div>
+
+                        <!-- Quick view & Add to cart buttons -->
+                        <div class="list-action grid grid-cols-2 gap-3 px-5 absolute w-full bottom-5 max-lg:hidden">
+                            <div class="quick-view-btn w-full text-button-uppercase py-2 text-center rounded-full duration-300 bg-white hover:bg-black hover:text-white">Quick View</div>
+                            <div class="add-cart-btn w-full text-button-uppercase py-2 text-center rounded-full duration-500 bg-white hover:bg-black hover:text-white">Add To Cart</div>
+                        </div>
+                    </div>
+
+                    <!-- Product info -->
+                    <div class="product-infor mt-4 lg:mb-7">
+                        <!-- Sold/Available progress (mock values — replace with real logic if needed) -->
+                        <div class="product-sold sm:pb-4 pb-2">
+                            <div class="progress bg-line h-1.5 w-full rounded-full overflow-hidden relative">
+                                <div class="progress-sold bg-red absolute left-0 top-0 h-full" style="width: {{ ($phone->sold ?? 0) / (($phone->sold ?? 0) + ($phone->available ?? 100)) * 100 }}%"></div>
+                            </div>
+                            <div class="flex items-center justify-between gap-3 gap-y-1 flex-wrap mt-2">
+                                <div class="text-button-uppercase">
+                                    <span class="text-secondary2 max-sm:text-xs">Sold: </span>
+                                    <span class="max-sm:text-xs">{{ $phone->sold ?? 12 }}</span>
+                                </div>
+                                <div class="text-button-uppercase">
+                                    <span class="text-secondary2 max-sm:text-xs">Available: </span>
+                                    <span class="max-sm:text-xs">{{ $phone->available ?? 88 }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product name -->
+                        <div class="product-name text-title duration-300">
+                            {{ $phone->brand }} {{ $phone->series }} {{ $phone->generation }} {{ $phone->variant }}
+                        </div>
+
+                        <!-- Colors (if you have color variants) -->
+                        <div class="list-color py-2 max-md:hidden flex items-center gap-3 flex-wrap duration-500">
+                            @foreach($phone->colors ?? ['black', 'green', 'red'] as $color)
+                                <div class="color-item bg-{{ $color }} w-8 h-8 rounded-full duration-300 relative">
+                                    <div class="tag-action bg-black text-white caption2 capitalize px-1.5 py-0.5 rounded-sm">{{ $color }}</div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Price block -->
+                        <div class="product-price-block flex items-center gap-2 flex-wrap mt-1 duration-300 relative z-[1]">
+                            @if($phone->sale_price)
+                                <div class="product-price text-title">{{ number_format($phone->sale_price, 0, '', ' ') }} ₽</div>
+                                <div class="product-origin-price caption1 text-secondary2">
+                                    <del>{{ number_format($phone->price, 0, '', ' ') }} ₽</del>
+                                </div>
+                                @php
+                                    $discount = round(($phone->price - $phone->sale_price) / $phone->price * 100);
+                                @endphp
+                                <div class="product-sale caption1 font-medium bg-green px-3 py-0.5 inline-block rounded-full">-{{ $discount }}%</div>
+                            @else
+                                <div class="product-price text-title">{{ number_format($phone->price, 0, '', ' ') }} ₽</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 @endsection

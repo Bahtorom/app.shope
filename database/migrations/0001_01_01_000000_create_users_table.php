@@ -17,9 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('password_encode');
             $table->string('val_phone')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('role')->default('user');
-            $table->decimal('deposit', 10, 2)->default(0);
+            $table->integer('deposit')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -15,12 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('brand');  //Apple
             $table->string('series');  // Iphone
-            $table->string('generation')->nullable();  // 17
-            $table->string('variant')->nullable();    // Pro Max
-            $table->decimal('price', 10, 2);
+            $table->string('generation')->default('');  // 17
+            $table->string('variant')->default('');    // Pro Max
+            $table->integer('price')->default(0);
             $table->integer('stock')->default(0); //Остаток на складе 
-            $table->string('image')->nullable();
+            $table->string('color')->default(''); //Цвет
+            $table->string('memory')->default(''); //Память
+            $table->string('description')->default(''); //Описание
+            $table->string('image')->default(''); 
             $table->timestamps();
+
+            $table->unique(['brand', 'series', 'generation', 'variant', 'color', 'memory']);
         });
     }
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('phone_id')->constrained()->onDelete('cascade');
             $table->integer('quantity')->default(0); // Количество
-            $table->decimal('price_at_purchase', 10, 2);  // Цена на момент покупки
+            $table->integer('price_at_purchase');  // Цена на момент покупки
             $table->timestamp('purchased_at')->useCurrent(); // Когда куплено 
             $table->timestamps();
         });

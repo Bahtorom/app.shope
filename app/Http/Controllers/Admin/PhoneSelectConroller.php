@@ -54,4 +54,18 @@ class PhoneSelectConroller extends Controller
 
         return response()->json($options);
     }
+
+    public function getFiveLevelSelect(){
+
+        $options = DB::table('phones')->distinct()->pluck('color');
+
+        return response()->json($options->values());
+    }
+    
+    public function getSixLevelSelect(){
+
+        $options = DB::table('phones')->distinct()->pluck('memory');
+
+        return response()->json($options->values());
+    }
 }

@@ -34,30 +34,45 @@
     <thead class="bg-silver">
       <tr>
         <th class="px-5 py-3 font-semibold text-black">ID</th>
-        <th class="px-5 py-3 font-semibold text-black">Брэнд</th> 
+        <th class="px-5 py-3 font-semibold text-black">Бренд</th> 
         <th class="px-5 py-3 font-semibold text-black">Серия</th>
         <th class="px-5 py-3 font-semibold text-black">Поколение</th>
         <th class="px-5 py-3 font-semibold text-black">Тип</th>
+        <th class="px-5 py-3 font-semibold text-black">Цвет</th>
+        <th class="px-5 py-3 font-semibold text-black">Память</th>
         <th class="px-5 py-3 font-semibold text-black">Цена</th>
         <th class="px-5 py-3 font-semibold text-black">Остаток</th>
         <th class="px-5 py-3 font-semibold text-black">Действия</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-line">
-      {{-- @foreach ($users as $user) --}}
+      @foreach ($phones as $phone)
         <tr class="hover:bg-gray-50">
-          <td class="px-5 py-4">1</td>
-          <td class="px-5 py-4">Apple</td>
-          <td class="px-5 py-4">Iphone</td>
-          <td class="px-5 py-4">Pro Max</td>
-          <td class="px-5 py-4">17</td>
-          <td class="px-5 py-4">1000$</td>
-          <td class="px-5 py-4">6</td>
+          <td class="px-5 py-4">{{ $phone->id }} </td>
+          <td class="px-5 py-4"> {{$phone->brand}} </td>
+          <td class="px-5 py-4">{{ $phone->series }} </td>
+          <td class="px-5 py-4">{{ $phone->generation }} </td>
+          <td class="px-5 py-4">{{ $phone->variant }} </td>
+          <td class="px-5 py-4">{{ $phone->color }} </td>
+          <td class="px-5 py-4">{{ $phone->memory }} </td>
+          <td class="px-5 py-4">{{ number_format(($phone->price), 0, '', ' ') }} ₽</td>
+          <td class="px-5 py-4">{{ $phone->stock }} </td>
           <td class="px-5 py-4">
-            <a href="#!" class="button-main text-center py-1.5 px-3 text-sm">Изменить</a>
+            <div class="flex justify-center space-x-2">
+              <a href={{ route('a_phones.edit', $phone->id) }} class="flex items-center justify-center p-1 rounded">
+                  <i class="ph-bold ph-pencil text-2xl"></i>
+              </a>
+              <form action="{{ route('a_phones.destroy', $phone->id) }}" method="POST" class="inline-block">
+                @csrf
+                @method('DELETE')
+                <button class="flex items-center justify-center p-1 rounded">
+                    <i class="ph-bold ph-trash text-2xl"></i>
+                </button>
+              </form>
+            </div>
           </td>
         </tr>
-      {{-- @endforeach --}}
+      @endforeach
     </tbody>
   </table>
 </div>

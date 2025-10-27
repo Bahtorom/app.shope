@@ -48,7 +48,7 @@
           <td class="px-5 py-4">
             <span class="inline-block px-2 py-1 bg-green-100 text-green-800 rounded">{{ $user->created_at }}</span>
           </td>
-          <td class="px-5 py-4">{{ $user->deposit }}</td>
+          <td class="px-5 py-4">{{ number_format(($user->deposit), 0, '', ' ') }} ₽</td>
           <td class="px-5 py-4">
             <a href="#!" class="button-main text-center py-1.5 px-3 text-sm">Изменить</a>
           </td>

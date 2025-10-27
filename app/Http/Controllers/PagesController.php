@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Phone;
 
 class PagesController extends Controller
 {
@@ -21,7 +22,26 @@ class PagesController extends Controller
     public function about(){
         return view('pages.about');
     }
-    public function shope(){
-        return view('pages.shope');
+
+    public function shope($brand=null, $series=null, $generation=null){
+        
+        $query = Phone::query();
+
+        if($brand){
+            $query->where('brand', $brand);
+        }
+
+        if($series){
+            $query->where('series', $series);
+        }
+
+        if ($generation){
+            $query->where('generation', $generation);
+        }
+
+        $phones = $query->get();
+
+
+        return view('pages.shope', compact('phones', 'brand', 'series', 'generation'));
     }
 }

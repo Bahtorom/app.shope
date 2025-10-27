@@ -140,13 +140,15 @@ if (searchIcon) {
     modalSearchMain.classList.add("open");
   });
 
-  modalSearch.addEventListener("click", () => {
-    modalSearchMain.classList.remove("open");
-  });
-
+  if (modalSearch && modalSearchMain) {
+    modalSearch.addEventListener("click", () => {
+      modalSearchMain.classList.remove("open");
+    });
+  
   modalSearchMain.addEventListener("click", (e) => {
     e.stopPropagation();
   });
+  }
 }
 
 // Redirect to search-results when enter or click form search
@@ -246,13 +248,6 @@ loginIcon?.addEventListener("click", () => {
   loginPopup.classList.toggle("open");
 });
 
-// Admin icon
-const lightbulbIcon = document.querySelector(".lightbulb-icon i");
-const bulbPopup = document.querySelector(".bulb-popup");
-
-lightbulbIcon?.addEventListener("click", () => {
-  bulbPopup.classList.toggle("open");
-});
 
 // initialize the variable(cart, wishlist, compare) in local storage
 let cartStore = localStorage.getItem("cartStore");
