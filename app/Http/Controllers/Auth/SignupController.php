@@ -37,6 +37,6 @@ class SignupController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('main')->with('success', 'Вы успешно зарегистрировались!');
+        return redirect()->route('pages.main')->with('success', 'Вы успешно зарегистрировались!');
     }
 }

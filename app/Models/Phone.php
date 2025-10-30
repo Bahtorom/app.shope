@@ -21,12 +21,12 @@ class Phone extends Model
         'image',
     ];
     
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'purchases')
-                    ->withPivot('quantity', 'price_at_purchase', 'purchased_at')
-                    ->withTimestamps();
-    }
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class, 'purchases')
+    //                 ->withPivot('id', 'quantity', 'price_at_purchase', 'purchased_at', 'buy')
+    //                 ->withTimestamps();
+    // }
     
     public function purchases(){
         return $this->hasMany(Purchase::class);

@@ -9,7 +9,7 @@
                 <div class="text-content">
                     <div class="heading2 text-center">Баланс</div>
                     <div class="link flex items-center justify-center gap-1 caption1 mt-3">
-                        <a href={{ route('main') }}>Домашняя страница</a>
+                        <a href={{ route('pages.main') }}>Домашняя страница</a>
                         <i class="ph ph-caret-right text-sm text-secondary2"></i>
                         <div class="text-secondary2 capitalize">Профиль</div>
                     </div>

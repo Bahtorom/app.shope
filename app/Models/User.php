@@ -53,11 +53,11 @@ class User extends Authenticatable
     }
 
 
-    public function phones(){
-        return $this->belongsToMany(Phone::class, 'purchases')
-                    ->withPivot('quantity', 'price_at_purchase', 'purchased_at')
-                    ->withTimestamps();
-    }
+    // public function phones(){
+    //     return $this->belongsToMany(Phone::class, 'purchases')
+    //                 ->withPivot('id','quantity', 'price_at_purchase', 'purchased_at', 'buy')
+    //                 ->withTimestamps();
+    // }
 
     public function purchases(){
         return $this->hasMany(Purchase::class);

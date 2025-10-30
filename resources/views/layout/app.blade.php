@@ -70,13 +70,13 @@
                             <i class="icon-category text-2xl"></i>
                         </div>
                         <div class="left flex items-center gap-16">
-                            <a href={{ route('main') }} class="flex items-center max-lg:absolute max-lg:left-1/2 max-lg:-translate-x-1/2">
+                            <a href={{ route('pages.main') }} class="flex items-center max-lg:absolute max-lg:left-1/2 max-lg:-translate-x-1/2">
                                 <div class="heading4">App.Shope</div>
                             </a>
                             <div class="menu-main h-full max-lg:hidden">
                                 <ul class="flex items-center gap-8 h-full">
                                     <li class="h-full relative">
-                                        <a href={{ route('shope', ['brand' => 'Apple'] ) }} class="text-button-uppercase duration-300 h-full flex items-center justify-center"> Apple </a>
+                                        <a href={{ route('pages.shope', ['brand' => 'Apple'] ) }} class="text-button-uppercase duration-300 h-full flex items-center justify-center"> Apple </a>
                                         <div class="mega-menu absolute top-[74px] left-0 bg-white w-screen">
                                             <div class="container">
                                                 <div class="flex justify-between py-8">
@@ -85,36 +85,36 @@
                                                             <div class="text-button-uppercase pb-2">IPhone</div>
                                                             <ul>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '17']) }} class="link text-secondary duration-300 cursor-pointer">IPhone 17 </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '17']) }} class="link text-secondary duration-300 cursor-pointer">IPhone 17 </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '16']) }} class="link text-secondary duration-300 cursor-pointer"> IPhone 16 </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '16']) }} class="link text-secondary duration-300 cursor-pointer"> IPhone 16 </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '15']) }} class="link text-secondary duration-300 cursor-pointer"> IPhone 15  </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '15']) }} class="link text-secondary duration-300 cursor-pointer"> IPhone 15  </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '14']) }} class="link text-secondary duration-300 cursor-pointer"> IPhone 14 </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'IPhone', 'generation' => '14']) }} class="link text-secondary duration-300 cursor-pointer"> IPhone 14 </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Apple', 'series' => 'IPhone']) }} class="link text-secondary duration-300 view-all-btn"> All </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'IPhone']) }} class="link text-secondary duration-300 view-all-btn"> All </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div class="nav-item">
-                                                            <div class="text-button-uppercase pb-2">Mac</div>
+                                                            <div class="text-button-uppercase pb-2">MacBook</div>
                                                             <ul>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Mac', 'series' => 'MacBook', 'generation' => 'Air']) }} class="link text-secondary duration-300 cursor-pointer"> MacBook Air </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'MacBook', 'generation' => 'Air']) }} class="link text-secondary duration-300 cursor-pointer"> MacBook Air </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Mac', 'series' => 'MacBook', 'generation' => 'Pro']) }} class="link text-secondary duration-300 cursor-pointer"> MacBook Pro </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'MacBook', 'generation' => 'Pro']) }} class="link text-secondary duration-300 cursor-pointer"> MacBook Pro </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Mac', 'series' => 'iMac']) }} class="link text-secondary duration-300 cursor-pointer"> iMac </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'iMac']) }} class="link text-secondary duration-300 cursor-pointer"> iMac </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Mac']) }} class="link text-secondary duration-300 view-all-btn"> All </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'MacBook' ]) }} class="link text-secondary duration-300 view-all-btn"> All </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -122,19 +122,19 @@
                                                             <div class="text-button-uppercase pb-2">Watch</div>
                                                             <ul>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Watch', 'series' => 'Ultra', 'generation' => '3']) }} class="link text-secondary duration-300 cursor-pointer"> Watch Ultra 3 </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'Watch', 'generation' => 'Ultra', 'variant' => '3'])}} class="link text-secondary duration-300 cursor-pointer"> Watch Ultra 3 </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Watch', 'series' => 'Series', 'generation' => '11']) }} class="link text-secondary duration-300 cursor-pointer"> Watch Series 11 </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'Watch', 'generation' => 'Series', 'variant' => '11']) }} class="link text-secondary duration-300 cursor-pointer"> Watch Series 11 </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Watch', 'series' => 'SE', 'generation' => '3']) }} class="link text-secondary duration-300 cursor-pointer"> Watch SE 3  </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'Watch', 'generation' => 'SE', 'variant' => '3']) }} class="link text-secondary duration-300 cursor-pointer"> Watch SE 3  </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Watch', 'series' => 'Series', 'generation' => '10']) }} class="link text-secondary duration-300 cursor-pointer"> Watch Series 10 </a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'Watch', 'generation' => 'Series', 'variant' => '10']) }} class="link text-secondary duration-300 cursor-pointer"> Watch Series 10 </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href={{ route('shope', ['brand' => 'Watch']) }} class="link text-secondary duration-300 view-all-btn"> All</a>
+                                                                    <a href={{ route('pages.shope', ['brand' => 'Apple', 'series' => 'Watch']) }} class="link text-secondary duration-300 view-all-btn"> All</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -219,14 +219,14 @@
                                 @endauth
 
                                 <!-- Избранное -->
-                                <div class="max-md:hidden wishlist-icon flex items-center relative cursor-pointer">
+                                {{-- <div class="max-md:hidden wishlist-icon flex items-center relative cursor-pointer">
                                     <i class="ph-bold ph-heart text-2xl"></i>
-                                    <span class="quantity wishlist-quantity absolute -right-1.5 -top-1.5 text-xs text-white bg-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
-                                </div>
+                                    <span class="quantity wishlist-quantity absolute -right-1.5 -top-1.5 text-xs text-white bg-black w-4 h-4 flex items-center justify-center rounded-full">2</span>
+                                </div> --}}
                                 <!-- Корзина -->
                                 <div class="max-md:hidden cart-icon flex items-center relative cursor-pointer">
-                                    <i class="ph-bold ph-handbag text-2xl"></i>
-                                    <span class="quantity cart-quantity absolute -right-1.5 -top-1.5 text-xs text-white bg-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                                    <a href="{{ route('pages.cart') }}" class="ph-bold ph-handbag text-2xl"></a>
+                                    <span class="quantity cart-quantity absolute -right-1.5 -top-1.5 text-xs text-white bg-black w-4 h-4 flex items-center justify-center rounded-full">3</span>
                                 </div>
                             </div>
                         </div>

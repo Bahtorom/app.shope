@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Phone;
+use App\Models\Purchase;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -11,19 +14,51 @@ class PagesController extends Controller
         return view('pages.main');
     }
 
-    public function signup(){
-        return view('pages.signup');
+    public function cart(){
+
+        $user = Auth::user();
+
+        $cartItems = Purchase::with(['phone', 'user'])
+            ->where('user_id', $user->id)
+            ->where('buy', false)
+            ->get();
+
+        return view('pages.cart', compact('cartItems', 'user'));
     }
 
-    public function signin(){
-        return view('pages.signin');
+
+    public function cart_append(Request $request)
+    {
+        $request->validate([
+            'phone_id' => 'required|exists:phones,id'
+        ]);
+
+        $userId = Auth::id();
+        $phoneId = $request->phone_id;
+        $price = Phone::findOrFail($phoneId)->price;
+
+        $purchase = Purchase::firstOrNew([
+            'user_id' => $userId,
+            'phone_id' => $phoneId,
+        ]);
+
+        if ($purchase->exists) {
+            // Уже есть — увеличиваем количество
+            $purchase->quantity += 1;
+        } else {
+            // Новая запись — начинаем с 1
+            $purchase->buy = false;
+            $purchase->quantity = 1;
+            $purchase->price_at_purchase = $price;
+            $purchase->purchased_at = null;
+        }
+
+        $purchase->save();
+
+        return response()->json(['success' => true]);
     }
 
-    public function about(){
-        return view('pages.about');
-    }
-
-    public function shope($brand=null, $series=null, $generation=null){
+    public function shope($brand=null, $series=null, $generation=null, $variant=null){
         
         $query = Phone::query();
 
@@ -38,10 +73,22 @@ class PagesController extends Controller
         if ($generation){
             $query->where('generation', $generation);
         }
+        
+        if ($variant){
+            $query->where('variant', $variant);
+        }
 
         $phones = $query->get();
 
+        $phones = $phones
+            ->sortBy([
+                ['brand', 'asc'],
+                ['series', 'asc'],
+                ['generation', 'desc'], // или 'asc'
+            ])
+            ->groupBy(['brand', 'series', 'generation']);
 
-        return view('pages.shope', compact('phones', 'brand', 'series', 'generation'));
+
+        return view('pages.shope', compact('phones', 'brand', 'series', 'generation', 'variant'));
     }
 }

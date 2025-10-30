@@ -26,7 +26,7 @@ class SigninController extends Controller
             $request->session()->regenerate();
 
             if (Auth::check() && Auth::user()->isAdmin()){
-                return redirect()->route('main');
+                return redirect()->route('pages.main');
             }
 
             return redirect()->intended('/');

@@ -362,3 +362,43 @@ trashIcon?.addEventListener("click", () => {
   trashPopup.classList.toggle("open");
 });
 
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const phoneId = btn.getAttribute('data-phone-id');
+
+            // Проверка авторизации
+            if (!window.Laravel.isLoggedIn) {
+                window.location.href = window.Laravel.loginUrl;
+                return;
+            }
+
+            try {
+                const response = await fetch(window.Laravel.cartAddUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.Laravel.csrfToken
+                    },
+                    body: JSON.stringify({ phone_id: phoneId })
+                });
+
+                if (response.ok) {
+                    btn.textContent = 'В корзине';
+                    btn.classList.replace('bg-white', 'bg-green-500');
+                    btn.classList.add('text-white');
+                } else {
+                    const error = await response.json();
+                    alert('Ошибка: ' + (error.message || 'Не удалось добавить в корзину'));
+                }
+            } catch (e) {
+                console.error('AJAX error:', e);
+                alert('Ошибка подключения');
+            }
+        });
+    });
+});

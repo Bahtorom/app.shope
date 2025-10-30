@@ -4405,3 +4405,24 @@ textarea:focus {
 }
 
 /*# sourceMappingURL=output-scss.css.map */
+
+
+/* Отменяем скрытие названия при наведении */
+@media (min-width: 1024px) {
+  .product-item.grid-type:hover .product-main .product-infor .product-name {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Отменяем сдвиг цены */
+  .product-item.grid-type:hover .product-main .product-infor .product-price-block {
+    transform: none !important;
+  }
+
+  /* Скрываем цвета (на всякий случай) */
+  .product-item.grid-type:hover .product-main .product-infor .list-color,
+  .product-item.grid-type:hover .product-main .product-infor .list-color-image {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}

@@ -281,7 +281,7 @@
     </div>
 </div>
 
-<div class="modal-wishlist-block">
+{{-- <div class="modal-wishlist-block">
     <div class="modal-wishlist-main py-6">
         <div class="heading px-6 pb-3 flex items-center justify-between relative">
             <div class="heading5">Wishlist</div>
@@ -295,9 +295,9 @@
             <div class="text-button-uppercase continue mt-4 text-center has-line-before cursor-pointer inline-block">Or continue shopping</div>
         </div>
     </div>
-</div>
+</div> --}}
 
-<div class="modal-cart-block">
+{{-- <div class="modal-cart-block">
     <div class="modal-cart-main flex">
         <div class="left w-1/2 border-r border-line py-6 max-md:hidden">
             <div class="heading5 px-6 pb-3">You May Also Like</div>
@@ -505,7 +505,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="modal-sizeguide-block">
     <div class="modal-sizeguide-main md:p-10 p-6 rounded-[32px]">

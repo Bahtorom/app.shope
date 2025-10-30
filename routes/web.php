@@ -17,8 +17,10 @@ Route::resource('/balance', UserBalanceController::class);
 
 
 // Страцицы
-Route::get('/', [PagesController::class, 'main'])->name('main');
-Route::get('/shope/{brand?}/{series?}/{generation?}', [PagesController::class, 'shope'])->name('shope');
+Route::get('/', [PagesController::class, 'main'])->name('pages.main');
+Route::get('/cart', [PagesController::class, 'cart'])->name('pages.cart');
+Route::post('/cart', [PagesController::class, 'cart_append'])->name('pages.cart.append');
+Route::get('/shope/{brand?}/{series?}/{generation?}', [PagesController::class, 'shope'])->name('pages.shope');
 
 
 

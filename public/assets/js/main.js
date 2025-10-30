@@ -285,7 +285,7 @@ const continueWishlistIcon = document.querySelector(
 const addWishlistBtns = document.querySelectorAll(".add-wishlist-btn");
 
 const openModalWishlist = () => {
-  modalWishlistMain.classList.add("open");
+  if (modalWishlist) modalWishlistMain.classList.add("open");
 };
 
 const closeModalWishlist = () => {
@@ -322,7 +322,7 @@ const handleItemModalWishlist = () => {
   wishlistStore = localStorage.getItem("wishlistStore");
 
   if (wishlistStore) {
-    wishlistIcon.querySelector("span").innerHTML =
+    if (wishlistIcon) wishlistIcon.querySelector("span").innerHTML =
       JSON.parse(wishlistStore).length;
   }
 
@@ -331,10 +331,10 @@ const handleItemModalWishlist = () => {
     ".modal-wishlist-block .list-product"
   );
 
-  listItemWishlist.innerHTML = "";
+  if (listItemWishlist) listItemWishlist.innerHTML = "";
 
   if (JSON.parse(wishlistStore).length === 0) {
-    listItemWishlist.innerHTML = `<p class='mt-1'>No product in wishlist</p>`;
+    if (listItemWishlist) listItemWishlist.innerHTML = `<p class='mt-1'>No product in wishlist</p>`;
   } else {
     JSON.parse(wishlistStore).forEach((item) => {
       const prdItem = document.createElement("div");
@@ -374,23 +374,23 @@ const handleItemModalWishlist = () => {
       listItemWishlist.appendChild(prdItem);
     });
   }
-
-  const prdItems = listItemWishlist.querySelectorAll(".item");
-  prdItems.forEach((prd) => {
-    const removeWishlistBtn = prd.querySelector(".remove-wishlist-btn");
-    removeWishlistBtn.addEventListener("click", () => {
-      const prdId = removeWishlistBtn
-        .closest(".item")
-        .getAttribute("data-item");
-      // JSON.parse(wishlistStore)
-      const newArray = JSON.parse(wishlistStore).filter(
-        (item) => item.id !== prdId
-      );
-      localStorage.setItem("wishlistStore", JSON.stringify(newArray));
-      handleItemModalWishlist();
-      updateWishlistIcons();
-    });
-  });
+  if (listItemWishlist){
+    const prdItems = listItemWishlist.querySelectorAll(".item");
+    prdItems.forEach((prd) => {
+      const removeWishlistBtn = prd.querySelector(".remove-wishlist-btn");
+      removeWishlistBtn.addEventListener("click", () => {
+        const prdId = removeWishlistBtn
+          .closest(".item")
+          .getAttribute("data-item");
+        // JSON.parse(wishlistStore)
+        const newArray = JSON.parse(wishlistStore).filter(
+          (item) => item.id !== prdId
+        );
+        localStorage.setItem("wishlistStore", JSON.stringify(newArray));
+        handleItemModalWishlist();
+        updateWishlistIcons();
+      });
+  })};
 };
 
 const updateWishlistIcons = () => {
@@ -444,111 +444,111 @@ addCartBtns.forEach((item) => {
 });
 
 cartIcon.addEventListener("click", openModalCart);
-modalCart.addEventListener("click", closeModalCart);
-closeCartIcon.addEventListener("click", closeModalCart);
-continueCartIcon.addEventListener("click", closeModalCart);
+if (modalCart) modalCart.addEventListener("click", closeModalCart);
+if (closeCartIcon) closeCartIcon.addEventListener("click", closeModalCart);
+if (continueCartIcon) continueCartIcon.addEventListener("click", closeModalCart);
 
-modalCartMain.addEventListener("click", (e) => {
+if (modalCartMain) modalCartMain.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
 
 // Set cart length
-const handleItemModalCart = () => {
-  cartStore = localStorage.getItem("cartStore");
-  cartStore = cartStore ? JSON.parse(cartStore) : [];
+// const handleItemModalCart = () => {
+//   cartStore = localStorage.getItem("cartStore");
+//   cartStore = cartStore ? JSON.parse(cartStore) : [];
 
-  if (cartStore) {
-    cartIcon.querySelector("span").innerHTML = cartStore.length;
-  }
+//   if (cartStore) {
+//     cartIcon.querySelector("span").innerHTML = cartStore.length;
+//   }
 
-  // Set cart item
-  const listItemCart = document.querySelector(
-    ".modal-cart-block .list-product"
-  );
+//   // Set cart item
+//   const listItemCart = document.querySelector(
+//     ".modal-cart-block .list-product"
+//   );
 
-  listItemCart.innerHTML = "";
+//   if(listItemCart) listItemCart.innerHTML = "";
 
-  if (cartStore.length === 0) {
-    listItemCart.innerHTML = `<p class='mt-1'>No product in cart</p>`;
-  } else {
-    // Initial money to freeship in cart
-    let moneyForFreeship = 150;
-    let totalCart = 0;
+//   if (cartStore.length === 0) {
+//     if(listItemCart) listItemCart.innerHTML = `<p class='mt-1'>No product in cart</p>`;
+//   } else {
+//     // Initial money to freeship in cart
+//     let moneyForFreeship = 150;
+//     let totalCart = 0;
 
-    cartStore.forEach((item) => {
-      totalCart = Number(totalCart) + Number(item.price)
+//     cartStore.forEach((item) => {
+//       totalCart = Number(totalCart) + Number(item.price)
 
-      // Create prd
-      const prdItem = document.createElement("div");
-      prdItem.setAttribute("data-item", item.id);
-      prdItem.classList.add(
-        "item",
-        "py-5",
-        "flex",
-        "items-center",
-        "justify-between",
-        "gap-3",
-        "border-b",
-        "border-line"
-      );
-      prdItem.innerHTML = `
-                <div class="infor flex items-center gap-3 w-full">
-                    <div class="bg-img w-[100px] aspect-square flex-shrink-0 rounded-lg overflow-hidden">
-                        <img src=${item.thumbImage[0]} alt='product'
-                            class='w-full h-full' />
-                    </div>
-                    <div class='w-full'>
-                        <div class="flex items-center justify-between w-full">
-                            <div class="name text-button">${item.name}</div>
-                            <div
-                                class="remove-cart-btn remove-btn caption1 font-semibold text-red underline cursor-pointer">
-                                Remove
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between gap-2 mt-3 w-full">
-                            <div class="flex items-center text-secondary2 capitalize">
-                                ${item.sizes[0]}/${item.variation[0].color}
-                            </div>
-                            <div class="product-price text-title">$${item.price}.00</div>
-                        </div>
-                    </div>
-                </div>
-            `;
+//       // Create prd
+//       const prdItem = document.createElement("div");
+//       prdItem.setAttribute("data-item", item.id);
+//       prdItem.classList.add(
+//         "item",
+//         "py-5",
+//         "flex",
+//         "items-center",
+//         "justify-between",
+//         "gap-3",
+//         "border-b",
+//         "border-line"
+//       );
+//       prdItem.innerHTML = `
+//                 <div class="infor flex items-center gap-3 w-full">
+//                     <div class="bg-img w-[100px] aspect-square flex-shrink-0 rounded-lg overflow-hidden">
+//                         <img src=${item.thumbImage[0]} alt='product'
+//                             class='w-full h-full' />
+//                     </div>
+//                     <div class='w-full'>
+//                         <div class="flex items-center justify-between w-full">
+//                             <div class="name text-button">${item.name}</div>
+//                             <div
+//                                 class="remove-cart-btn remove-btn caption1 font-semibold text-red underline cursor-pointer">
+//                                 Remove
+//                             </div>
+//                         </div>
+//                         <div class="flex items-center justify-between gap-2 mt-3 w-full">
+//                             <div class="flex items-center text-secondary2 capitalize">
+//                                 ${item.sizes[0]}/${item.variation[0].color}
+//                             </div>
+//                             <div class="product-price text-title">$${item.price}.00</div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             `;
 
-      listItemCart.appendChild(prdItem);
-    });
+//       listItemCart.appendChild(prdItem);
+//     });
 
-    // Set money to freeship in cart
-    modalCart.querySelector('.more-price').innerHTML = moneyForFreeship - totalCart
-    modalCart.querySelector('.tow-bar-block .progress-line').style.width = (totalCart / moneyForFreeship * 100) + '%'
-    modalCart.querySelector('.total-cart').innerHTML = '$' + totalCart + '.00'
-    if (moneyForFreeship - totalCart <= 0) {
-      modalCart.querySelector('.more-price').innerHTML = 0
-      modalCart.querySelector('.tow-bar-block .progress-line').style.width = '100%'
-    }
-  }
+//     // Set money to freeship in cart
+//     modalCart.querySelector('.more-price').innerHTML = moneyForFreeship - totalCart
+//     modalCart.querySelector('.tow-bar-block .progress-line').style.width = (totalCart / moneyForFreeship * 100) + '%'
+//     modalCart.querySelector('.total-cart').innerHTML = '$' + totalCart + '.00'
+//     if (moneyForFreeship - totalCart <= 0) {
+//       modalCart.querySelector('.more-price').innerHTML = 0
+//       modalCart.querySelector('.tow-bar-block .progress-line').style.width = '100%'
+//     }
+//   }
+//   if (listItemCart){
+//   const prdItems = listItemCart.querySelectorAll(".item");
+//     prdItems.forEach((prd) => {
+//       const removeCartBtn = prd.querySelector(".remove-cart-btn");
+//       removeCartBtn.addEventListener("click", () => {
+//         const prdId = removeCartBtn.closest(".item").getAttribute("data-item");
+//         // cartStore
+//         const newArray = cartStore.filter((item) => item.id !== prdId);
+//         localStorage.setItem("cartStore", JSON.stringify(newArray));
+//         handleItemModalCart();
 
-  const prdItems = listItemCart.querySelectorAll(".item");
-  prdItems.forEach((prd) => {
-    const removeCartBtn = prd.querySelector(".remove-cart-btn");
-    removeCartBtn.addEventListener("click", () => {
-      const prdId = removeCartBtn.closest(".item").getAttribute("data-item");
-      // cartStore
-      const newArray = cartStore.filter((item) => item.id !== prdId);
-      localStorage.setItem("cartStore", JSON.stringify(newArray));
-      handleItemModalCart();
+//         if (cartStore.length === 0) {
+//           modalCart.querySelector('.more-price').innerHTML = 0
+//           modalCart.querySelector('.tow-bar-block .progress-line').style.width = '0'
+//           modalCart.querySelector('.total-cart').innerHTML = '$0.00'
+//         }
+//       });
+//   })};
+// };
 
-      if (cartStore.length === 0) {
-        modalCart.querySelector('.more-price').innerHTML = 0
-        modalCart.querySelector('.tow-bar-block .progress-line').style.width = '0'
-        modalCart.querySelector('.total-cart').innerHTML = '$0.00'
-      }
-    });
-  });
-};
-
-handleItemModalCart();
+// handleItemModalCart();
 
 // Countdown cart
 let timeLeft = 600;
@@ -581,13 +581,20 @@ const countDownCart = setInterval(function () {
 }, 1000);
 
 // Open note, shipping, coupon popup
-const noteBtn = modalCart.querySelector(".note-btn");
-const shippingBtn = modalCart.querySelector(".shipping-btn");
-const couponBtn = modalCart.querySelector(".coupon-btn");
-const notePopup = modalCart.querySelector(".note-block");
-const shippingPopup = modalCart.querySelector(".shipping-block");
-const couponPopup = modalCart.querySelector(".coupon-block");
-
+const noteBtn = [];
+const shippingBtn = [];
+const couponBtn = [];
+const notePopup = [];
+const shippingPopup = [];
+const couponPopup = [];
+if (modalCart){
+  noteBtn = modalCart.querySelector(".note-btn");
+  shippingBtn = modalCart.querySelector(".shipping-btn");
+  couponBtn = modalCart.querySelector(".coupon-btn");
+  notePopup = modalCart.querySelector(".note-block");
+  shippingPopup = modalCart.querySelector(".shipping-block");
+  couponPopup = modalCart.querySelector(".coupon-block");
+}
 if (modalCart) {
   // note block
   noteBtn.addEventListener("click", () => {
