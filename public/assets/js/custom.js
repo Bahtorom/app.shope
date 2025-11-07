@@ -369,6 +369,11 @@ trashIcon?.addEventListener("click", () => {
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.add-cart-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
+
+            if (btn.hasAttribute('disabled')) {
+                return;
+            }
+
             const phoneId = btn.getAttribute('data-phone-id');
 
             // Проверка авторизации
@@ -389,8 +394,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (response.ok) {
                     btn.textContent = 'В корзине';
-                    btn.classList.replace('bg-white', 'bg-green-500');
+                    btn.classList.replace('bg-white', 'bg-black');
                     btn.classList.add('text-white');
+                    btn.disabled = true;
                 } else {
                     const error = await response.json();
                     alert('Ошибка: ' + (error.message || 'Не удалось добавить в корзину'));

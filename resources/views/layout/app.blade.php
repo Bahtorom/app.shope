@@ -180,7 +180,8 @@
                                         <div class="login-popup absolute top-[74px] w-[320px] p-7 rounded-xl bg-white box-shadow-small">
                                             <div class="flex flex-col gap-0.5">
                                             <a href={{ route('profile.index') }} class="button-main w-full text-center ">Профиль</a>
-                                            <a href={{ route('balance.index') }} class="button-main w-full text-center ">Баланс</a>
+                                            <a href={{ route('balance.index') }} class="button-main w-full bg-secondary text-center ">Баланс</a>
+                                            <a href={{ route('orders.index') }} class="button-main w-full bg-secondary text-center ">Покупки</a>
                                             <form method="POST" action={{ route('logout') }}>
                                                 @csrf
                                                 <button type="submit" class="button-main w-full bg-white border border-black text-black text-center uppercase">Выход</button>
@@ -196,8 +197,9 @@
                                             <div class="bulb-popup absolute top-[74px] w-[320px] p-7 rounded-xl bg-white box-shadow-small">
                                                 <div class="flex flex-col gap-0.5">
                                                     <a href={{ route('admin.dashboard') }} class="button-main w-full bg-white border border-black text-black text-center uppercase">Главная</a>
-                                                    <a href={{ route('a_users.index') }} class="button-main w-full text-center ">Клиенты</a>
-                                                    <a href={{ route('a_phones.index') }} class="button-main w-full text-center ">Продукты</a>
+                                                    <a href={{ route('a_users.index') }} class="button-main bg-secondary w-full text-center ">Клиенты</a>
+                                                    <a href={{ route('a_phones.index') }} class="button-main bg-secondary w-full text-center ">Продукты</a>
+                                                    <a href={{ route('a_orders.index') }} class="button-main w-full text-center ">Заявки</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,7 +228,7 @@
                                 <!-- Корзина -->
                                 <div class="max-md:hidden cart-icon flex items-center relative cursor-pointer">
                                     <a href="{{ route('pages.cart') }}" class="ph-bold ph-handbag text-2xl"></a>
-                                    <span class="quantity cart-quantity absolute -right-1.5 -top-1.5 text-xs text-white bg-black w-4 h-4 flex items-center justify-center rounded-full">3</span>
+                                    <span class="quantity cart-quantity absolute -right-1.5 -top-1.5 text-xs text-white bg-black w-4 h-4 flex items-center justify-center rounded-full">{{$cartCount}}</span>
                                 </div>
                             </div>
                         </div>

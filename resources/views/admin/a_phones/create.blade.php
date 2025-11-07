@@ -145,6 +145,14 @@
                                 <input type="text" id="value6" name="stock" class="border-line px-4 pt-3 pb-3 w-full rounded-lg" placeholder="Введите..." >
                             </div>
                             <div></div>
+
+                            <div class=" py-3 font-medium text-center">
+                                <b>Описание</b>
+                            </div>
+                            <div>
+                                <textarea id="value6" name="description" class="border-line px-4 pt-3 pb-3 w-full rounded-lg" placeholder="Введите..." ></textarea>
+                            </div>
+                            <div></div>
                      
                             <div class=" py-3 font-medium text-center">
                                 <b>Изображение </b>

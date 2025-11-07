@@ -298,7 +298,7 @@
   --green: #D2EF9A;
   --black: #1F1F1F;
   --secondary: #696C70;
-  --secondary2: #A0A0A0;
+  --secondary2: #c5c3c3;
   --white: #ffffff;
   --surface: #F7F7F7;
   --red: #DB4444;
@@ -307,6 +307,7 @@
   --yellow: #ECB018;
   --pink: #F4407D;
   --line: #E9E9E9;
+  --orange:#ff7504;
   --outline: rgba(0, 0, 0, 0.15);
   --surface1: rgba(255, 255, 255, 0.1);
   --surface2: rgba(255, 255, 255, 0.2);
@@ -380,6 +381,14 @@ textarea:focus {
 
 .bg-red {
   background-color: var(--red);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+.bg-orange {
+  background-color: var(--orange);
 }
 
 .bg-yellow {

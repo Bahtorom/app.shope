@@ -20,11 +20,22 @@
         </div>
     </div>
 </div>
-
+@if (session('success'))
+        <div class="py-3 font-medium text-center text-secondary">
+            {{ session('success') }}
+        </div>
+@endif  
 @if ($cartItems->isEmpty())
     <div class="heading5 px-6 pb-3">Корзина пуста</div> 
 
 @else
+
+    @if ($errors->any())
+        <div class="py-3 font-medium text-center text-red">
+            {{ $errors->first() }}
+        </div>
+    @endif
+
     @foreach ($cartItems as $item)
         <div class="product-item item py-5 flex items-center justify-between gap-3 border-b border-line pr-8 ">
             <div class="infor flex items-center gap-5">
@@ -37,8 +48,15 @@
             </div>
             <div class="block-button flex gap-5">
                 <button class="button-main rounded-full">Просмотр</button>
-                <button class="button-main rounded-full">Купить</button>
-                <button class="button-main rounded-full">Удалить</button>
+                <form action="{{ route('pages.cart.paid', $item->id) }}" method="POST" class="inline-block">
+                    @csrf
+                    <button class="button-main rounded-full">Купить</button>
+                </form>
+                <form action="{{ route('pages.cart.delete', $item->id) }}" method="POST" class="inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button class="button-main rounded-full">Удалить</button>
+                </form>
             </div>
         </div>
     @endforeach

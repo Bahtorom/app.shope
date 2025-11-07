@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('phone_id')->constrained()->onDelete('cascade');
-            $table->boolean('buy')->default(false);
+            $table->string('status')->default('cart');
             $table->integer('quantity')->default(0); // Количество
             $table->integer('price_at_purchase');  // Цена на момент покупки
             $table->timestamp('purchased_at')->nullable(); // Когда куплено 

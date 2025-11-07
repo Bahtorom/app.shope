@@ -43,7 +43,7 @@
           <td class="px-5 py-4">{{ $user->name }}</td>
           <td class="px-5 py-4">{{ $user->email }}</td>
           <td class="px-5 py-4">
-            <span class="inline-block px-2 py-1 bg-success text-blue-800 rounded">{{ $user->role }}</span>
+            <span class="rounded-full py-1.5 px-8 w-full {{ ($user->role == 'admin') ? 'bg-purple' : 'bg-secondary' }} text-white">{{ $user->role }}</span>
           </td>
           <td class="px-5 py-4">
             <span class="inline-block px-2 py-1 bg-green-100 text-green-800 rounded">{{ $user->created_at }}</span>

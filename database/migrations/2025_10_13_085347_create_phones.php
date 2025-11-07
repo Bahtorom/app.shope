@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('stock')->default(0); //Остаток на складе 
             $table->string('color')->default(''); //Цвет
             $table->string('memory')->default(''); //Память
-            $table->string('description')->default(''); //Описание
+            $table->text('description')->default(''); //Описание
             $table->string('image')->default(''); 
             $table->timestamps();
 

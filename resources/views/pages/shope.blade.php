@@ -67,6 +67,9 @@
                     
                 <div class="list-product pb-5 hide-product-sold grid xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 md:gap-[30px] gap-4 mt-4 pl-8 pr-8">
                     @foreach ($phoneGroup as $phone)
+                        @php
+                            $inCart = in_array($phone->id, $cartPhone)
+                        @endphp
                         <div class="product-item grid-type" data-item="{{ $phone->id }}">
                             <div class="product-main cursor-pointer block">
                                 {{-- {{ $phone-> }} --}}
@@ -97,13 +100,19 @@
 
                                     <!-- Quick view & Add to cart buttons -->
                                     <div class="list-action grid grid-cols-2 gap-3 px-5 absolute w-full bottom-5 max-lg:hidden">
-                                        <a  class="quick-view-btn w-full text-button-uppercase py-2 text-center rounded-full duration-300 bg-white hover:bg-black hover:text-white">Просмотр</a>
-                                        <button class="add-cart-btn w-full text-button-uppercase py-2 text-center rounded-full duration-500 bg-white hover:bg-black hover:text-white" data-phone-id="{{ $phone->id }}">В Корзину</button>
+                                        <a href="{{ route('pages.ticket', $phone) }}" class="quick-view-btn w-full text-button-uppercase py-2 text-center rounded-full duration-300 bg-white hover:bg-black hover:text-white">Просмотр</a>
+                                        <button class="add-cart-btn w-full text-button-uppercase py-2 text-center rounded-full duration-500 {{ $inCart ? 'bg-black text-white' : 'bg-white hover:bg-black hover:text-white' }}" 
+                                            data-phone-id="{{ $phone->id }}" @if ($inCart) disabled @endif>
+                                            {{ $inCart ? 'В корзине' : 'В корзину' }}
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="text-secondary2 text-xs mt-2 pl-4">Остаток: <b>{{$phone->stock}}</b> шт.</div>
 
-                                <div class="blog-infor mt-3 text-center">
-                                    <div class="heading6 blog-title mt-3 duration-300"> {{ $phone->brand }} {{ $phone->series }} {{ $phone->generation }} {{ $phone->variant }}  </div>
+                                <div class="blog-infor text-center ">
+                                    <div class="heading6 blog-title duration-300"> {{ $phone->brand }} {{ $phone->series }} {{ $phone->generation }} {{ $phone->variant }}  </div>
+                            
+                                    
                                     <div class="blog-tag bg-green py-1 px-2.5 rounded-full text-button-uppercase inline-block mt-2">{{ number_format ($phone->price, 0, '', ' ') }} ₽</div>                      
                                 </div>                                                                        
                             </div>

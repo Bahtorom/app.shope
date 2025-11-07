@@ -47,14 +47,20 @@
                             <i class="ph-bold ph-user text-xl"></i>
                             <div class="heading6">Реквизиты</div>
                         </div>
-                        <div class="item px-5 py-4 flex items-center gap-3 cursor-pointer mt-2">
-                            <i class="ph-bold ph-bag text-xl"></i>
+                        <a href="{{ route('orders.index') }}">
+                            <div class="item px-5 py-4 flex items-center gap-3 cursor-pointer mt-2">
+                                <i class="ph-bold ph-bag text-xl"></i>
                             <div class="heading6">Заказы</div>
                         </div>
-                        <div class="item px-5 py-4 flex items-center gap-3 cursor-pointer mt-2">
-                            <i class="ph-bold ph-sign-out text-xl"></i>
-                            <div class="heading6">Выход</div>
-                        </div>
+                        <form method="POST" action={{ route('logout') }}>
+                            @csrf
+                            <button>
+                                <div class="item px-5 py-4 flex items-center gap-3 cursor-pointer mt-2">
+                                    <i class="ph-bold ph-sign-out text-xl"></i>
+                                    <div class="heading6">Выход</div>
+                                </div>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

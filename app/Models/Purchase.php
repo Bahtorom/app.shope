@@ -10,7 +10,7 @@ class Purchase extends Model
     protected $fillable = [
         'user_id',
         'phone_id',
-        'buy',
+        'status' , // cart = В корзине | pending = Купить (до подтв) | paid = Купить (после подвт) | cancel = Отменен | cancel_user = отменен юзером
         'quantity',
         'price_at_purchase',
         'purchased_at',
@@ -22,5 +22,6 @@ class Purchase extends Model
 
     public function phone(){
         return $this->belongsTo(Phone::class);
+        
     }
 }

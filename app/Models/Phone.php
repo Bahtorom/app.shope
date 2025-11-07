@@ -18,6 +18,7 @@ class Phone extends Model
         'stock',
         'color',
         'memory',
+        'description',
         'image',
     ];
     

@@ -42,6 +42,6 @@ class SigninController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('main');
+        return redirect()->route('pages.main');
     }
 }
