@@ -1,0 +1,66 @@
+
+
+.page-custom-dashboard.container {
+    max-width: 1322px !important;
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin: 0 auto;
+}
+
+.page-custom-dashboard.heading3 {
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.page-custom-dashboard.caption1 {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+
+
+.page-custom-dashboard .button-main:hover {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+
+.page-custom-dashboard .box-shadow-small {
+    box-shadow: 0px 10px 25px 0px rgba(43, 52, 74, 0.12);
+}
+
+
+.page-custom-dashboard .card {
+    background: var(--white);
+    border: 1px solid var(--line); /* ← используем твой цвет --line */
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.page-custom-dashboard .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.page-custom-dashboard .chart-container {
+    height: 300px;
+    position: relative;
+}
+
+@media (max-width: 767.98px) {
+    .grid {
+    display: block !important;
+    }
+    .card {
+    margin-bottom: 20px;
+    }
+}
+
+
+
+

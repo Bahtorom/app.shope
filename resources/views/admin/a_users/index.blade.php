@@ -50,7 +50,7 @@
           </td>
           <td class="px-5 py-4">{{ number_format(($user->deposit), 0, '', ' ') }} ₽</td>
           <td class="px-5 py-4">
-            <a href="#!" class="button-main text-center py-1.5 px-3 text-sm">Изменить</a>
+            <a href="{{ route('a_users.edit', $user) }}" class="button-main text-center py-1.5 px-3 text-sm">Изменить</a>
           </td>
         </tr>
       @endforeach

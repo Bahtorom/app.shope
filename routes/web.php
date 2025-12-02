@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminPhoneController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\PhoneSelectConroller;
 use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminDashController;
 
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\SigninController;
@@ -52,7 +53,7 @@ Route::controller(SigninController::class)->group(function (){
 //Админка
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
-    Route::get('/dashboard', fn() => view('admin.dashboard'))->name('admin.dashboard');
+    Route::resource('dashboard', AdminDashController::class);
     Route::resource('a_phones', AdminPhoneController::class);
     Route::resource('a_users', AdminUserController::class);
     Route::resource('a_orders', AdminOrderController::class);

@@ -19,7 +19,19 @@
         </div>
     </div>
 </div>
-        
+{{-- @php
+
+
+$secret = '0ff9e40375dF7D4eb6927910ea6Caf26dd1E1d36ffC277a07b91f56235ee8e14e5eA0bd8dEcd83fB316E20557Fa5f31a3a934d60819ba781b2047af249A14D71C870bc4d842b7C0c1bf1908f95018D47f0b7D172D5b9610aE807e8a882bB8888F3a5f08D23d926F36b9b5be033f0621877a8D36434fe84d0782e4fC83ed01b65';
+
+// $body = ''; // ← именно пустая строка, как в Node.js
+$body = ''; // ← именно пустая строка, как в Node.js
+// $body = json_encode($body);
+$signature = hash_hmac('sha256', $body, $secret);
+
+echo $signature;
+@endphp --}}
+
 <div class="login-block md:py-20 py-10">
     <div class="container">
         <div class="content-main flex gap-y-8 max-md:flex-col">

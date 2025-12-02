@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="/assets/css/style.css" />
         <link rel="stylesheet" href="/dist/output-scss.css" />
         <link rel="stylesheet" href="/dist/output-tailwind.css" />
+        <link rel="stylesheet" href="/assets/css/dash.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -63,7 +65,7 @@
 
         
         <div id="header" class="relative w-full">
-            <div class="header-menu style-one absolute top-0 left-0 right-0 w-full md:h-[74px] h-[56px] bg-transparent">
+            <div class="header-menu style-one absolute top-0 left-0 right-0 w-full md:h-[74px] h-[56px] bg-transparent ">
                 <div class="container mx-auto h-full">
                     <div class="header-main flex justify-between h-full">
                         <div class="menu-mobile-icon lg:hidden flex items-center">
@@ -196,7 +198,7 @@
                                             <i class="ph-bold ph-lightbulb text-2xl"></i>
                                             <div class="bulb-popup absolute top-[74px] w-[320px] p-7 rounded-xl bg-white box-shadow-small">
                                                 <div class="flex flex-col gap-0.5">
-                                                    <a href={{ route('admin.dashboard') }} class="button-main w-full bg-white border border-black text-black text-center uppercase">Главная</a>
+                                                    <a href={{ route('dashboard.index') }} class="button-main w-full bg-white border border-black text-black text-center uppercase">Главная</a>
                                                     <a href={{ route('a_users.index') }} class="button-main bg-secondary w-full text-center ">Клиенты</a>
                                                     <a href={{ route('a_phones.index') }} class="button-main bg-secondary w-full text-center ">Продукты</a>
                                                     <a href={{ route('a_orders.index') }} class="button-main w-full text-center ">Заявки</a>
@@ -262,5 +264,6 @@
         <script src="/assets/js/swiper-bundle.min.js"></script>
         <script src="/assets/js/main.js"></script>
         <script src="/assets/js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </body>
 </html>
