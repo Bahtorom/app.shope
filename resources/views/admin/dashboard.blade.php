@@ -50,7 +50,10 @@
     <div class="card">
       <div class="heading5 mb-4">Apple</div>
       <div class="chart-container">
-        <canvas id="categoryChart"></canvas>
+        <canvas id="categoryChart"
+          data-labels='@json($chartLabels)'
+          data-values='@json($chartData)'>
+        </canvas>
       </div>
     </div>
      <!-- Статистика -->
@@ -76,7 +79,10 @@
     <div class="card">
       <div class="heading5 mb-4">Продажи по дням</div>
       <div class="chart-container">
-        <canvas id="salesChart"></canvas>
+        <canvas id="salesChart"
+          data-days="{{ $daysInMonth }}"
+          data-values='@json($data)'>
+        </canvas>
       </div>
     </div>
   </div>
@@ -94,67 +100,6 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Круговая диаграмма (doughnut)
-    const ctx1 = document.getElementById('categoryChart').getContext('2d');
-    new Chart(ctx1, {
-      type: 'doughnut',
-      data: {
-        labels: @json($chartLabels),
-        datasets: [{
-          data: @json($chartData),
-          backgroundColor: ['#4856DA', '#D2EF9A', '#8684D4', '#ff7504'],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: { size: 12 },
-              padding: 16
-            }
-          }
-        },
-        cutout: '60%'
-      }
-    });
 
-    // Линейный график (line)
-    const ctx2 = document.getElementById('salesChart').getContext('2d');
-
-    const labels = Array.from({ length: {{ $daysInMonth }} }, (_, i) => i + 1);
-    const data = @json($data);
-
-    new Chart(ctx2, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Продажи',
-          data: data,
-          borderColor: '#1F1F1F',
-          backgroundColor: '#D2EF9A',
-          fill: true,
-          tension: 0.3
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: { beginAtZero: false }
-        },
-        plugins: {
-          legend: { display: true }
-        }
-      }
-    });
-  });
-</script>
 
 @endsection

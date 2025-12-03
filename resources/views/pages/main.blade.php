@@ -14,7 +14,7 @@
                             <div class="text-content basis-1/2">
                                 <div class="text-sub-display">Распродажа! Скидка до 25%!</div>
                                 <div class="text-display md:mt-5 mt-2">Гаджеты на любой сезон</div>
-                                <a href="shop-breadcrumb-img.html" class="button-main md:mt-8 mt-3">Перейти в магазин</a>
+                                <a href="{{ route('pages.shope') }}" class="button-main md:mt-8 mt-3">Перейти в магазин</a>
                             </div>
                             <div class="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] bottom-0"> <!--  670 * 805 -->
                                 <img src="/assets/images/title/macbook.jpg" alt="bg1-1" />
@@ -28,7 +28,7 @@
                             <div class="text-content basis-1/2">
                                 <div class="text-sub-display">Распродажа! Скидка до 25%!</div>
                                 <div class="text-display md:mt-5 mt-2">IPhone на каждый вкус и цвет</div>
-                                <a href="shop-breadcrumb-img.html" class="button-main md:mt-8 mt-3">Перейти в магазин </a>
+                                <a href="{{ route('pages.shope') }}" class="button-main md:mt-8 mt-3">Перейти в магазин </a>
                             </div>
                             <div class="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] bottom-0">
                                 <img src="/assets/images/title/iphone.webp" alt="bg1-2" />
@@ -42,7 +42,7 @@
                             <div class="text-content basis-1/2">
                                 <div class="text-sub-display">Распродажа! Скидка до 25%!</div>
                                 <div class="text-display md:mt-5 mt-2">Dyson - это любовь твоей девушки</div>
-                                <a href="shop-breadcrumb-img.html" class="button-main md:mt-8 mt-3">Перейти в магазин</a>
+                                <a href="{{ route('pages.shope') }}" class="button-main md:mt-8 mt-3">Перейти в магазин</a>
                             </div>
                             <div class="sub-img absolute sm:w-1/2 w-3/5 2xl:-right-[60px] -right-[16px] bottom-0">
                                 <img src="/assets/images/title/dyson.jpg" alt="bg1-3" />

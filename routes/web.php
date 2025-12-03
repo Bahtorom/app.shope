@@ -57,6 +57,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
     Route::resource('a_phones', AdminPhoneController::class);
     Route::resource('a_users', AdminUserController::class);
     Route::resource('a_orders', AdminOrderController::class);
+
+    // Добавляем AJAX-метод для обновления stock
+    Route::post('a_phones/{phone}/update-stock', [AdminPhoneController::class, 'updateStock'])
+        ->name('admin.a_phones.update-stock');
 });
 
 Route::controller(PhoneSelectConroller::class)->group(function(){

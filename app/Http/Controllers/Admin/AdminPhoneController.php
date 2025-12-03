@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Phone;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class AdminPhoneController extends Controller
 {
@@ -147,5 +147,20 @@ class AdminPhoneController extends Controller
         $a_phone->delete();
 
         return redirect()->route('a_phones.index');
+    }
+
+
+    public function updateStock(Request $request, Phone $phone)
+    {
+        $request->validate([
+            'stock' => 'required|integer|min:0'
+        ]);
+
+        
+        // Убедитесь, что используете правильную модель
+
+        $phone->update(['stock' => $request->stock]);
+
+        return response()->json(['success' => true, 'stock' => $phone->stock]);
     }
 }

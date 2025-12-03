@@ -411,4 +411,142 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// stock phones
+const stockUpdates = {};
 
+function changeStock(button, delta) {
+    const wrapper = button.closest('div[data-phone-id]');
+    const phoneId = wrapper.dataset.phoneId;
+
+    if (stockUpdates[phoneId]) return;
+
+    const stockElement = wrapper.querySelector('.stock-value');
+    let currentValue = parseInt(stockElement.textContent) || 0;
+    let newValue = currentValue + delta;
+
+    if (newValue < 0) newValue = 0;
+
+    // Сначала обновляем UI
+    stockElement.textContent = newValue;
+
+    stockUpdates[phoneId] = true;
+    disableButtons(wrapper, true);
+
+    // Затем — отправляем на сервер
+    updateStockOnServer(phoneId, newValue)
+        .finally(() => {
+            stockUpdates[phoneId] = false;
+            disableButtons(wrapper, false);
+        });
+}
+
+function disableButtons(wrapper, disable) {
+    const buttons = wrapper.querySelectorAll('button');
+    buttons.forEach(btn => {
+        btn.disabled = disable;
+        // Опционально: визуальный фидбек
+        btn.style.opacity = disable ? '0.6' : '1';
+        btn.style.pointerEvents = disable ? 'none' : 'auto';
+    });
+}
+
+
+async function updateStockOnServer(phoneId, newStock) {
+    try {
+        const response = await fetch(`/admin/a_phones/${phoneId}/update-stock`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ stock: newStock })
+        });
+        const data = await response.json();
+        if (data.success) {
+            // Обновляем UI ТОЛЬКО если это актуальное значение
+            const el = document.querySelector(`div[data-phone-id="${phoneId}"] .stock-value`);
+            if (el && parseInt(el.textContent) !== data.stock) {
+                el.textContent = data.stock;
+            }
+        }
+        return data;
+    } catch(err) {
+            console.error('Ошибка сети:', err);
+        }
+    
+}
+
+// end stock phones
+
+//dashboard
+document.addEventListener('DOMContentLoaded', () => {
+    // === Круговая диаграмма ===
+    const categoryCanvas = document.getElementById('categoryChart');
+    if (categoryCanvas) {
+        const labels = JSON.parse(categoryCanvas.dataset.labels);
+        const values = JSON.parse(categoryCanvas.dataset.values);
+
+        new Chart(categoryCanvas.getContext('2d'), {
+            type: 'doughnut',
+            data: {  // ✅ ДОБАВЛЕНО: data
+                labels: labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: ['#4856DA', '#D2EF9A', '#8684D4', '#ff7504'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 12 },
+                            padding: 16
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+    }
+
+    // === Линейный график ===
+    const salesCanvas = document.getElementById('salesChart');
+    if (salesCanvas) {
+        const daysInMonth = parseInt(salesCanvas.dataset.days, 10);
+        const data = JSON.parse(salesCanvas.dataset.values);
+        const labels = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+        new Chart(salesCanvas.getContext('2d'), {
+            type: 'line',
+            data: {  // ✅ ДОБАВЛЕНО: data
+                labels: labels,
+                datasets: [{
+                    label: 'Продажи',
+                    data: data,
+                    borderColor: '#1F1F1F',
+                    backgroundColor: 'rgba(210, 239, 154, 0.3)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                },
+                plugins: {
+                    legend: { display: true }
+                }
+            }
+        });
+    }
+});
+  //end dashboard

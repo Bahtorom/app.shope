@@ -56,9 +56,24 @@
           <td class="px-5 py-4">{{ $phone->color }} </td>
           <td class="px-5 py-4">{{ $phone->memory }} </td>
           <td class="px-5 py-4">{{ number_format(($phone->price), 0, '', ' ') }} ₽</td>
-          <td class="px-5 py-4">{{ $phone->stock }} </td>
+          {{-- <td class="px-5 py-4">{{ $phone->stock }} </td> --}}
           <td class="px-5 py-4">
-            <div class="flex justify-center space-x-2">
+            <div class="flex items-center gap-2" data-phone-id="{{ $phone->id }}">
+                <button type="button"
+                        class="w-6 h-6 flex items-center justify-center text-sm text-white bg-secondary2 rounded hover:bg-secondary"
+                        onclick="changeStock(this, -1)">
+                    –
+                </button>
+                <span class="min-w-[24px] stock-value">{{ $phone->stock }}</span>
+                <button type="button"
+                        class="w-6 h-6 flex items-center justify-center text-white text-sm bg-secondary2 rounded hover:bg-secondary"
+                        onclick="changeStock(this, 1)">
+                    +
+                </button>
+            </div>
+          </td>
+          <td class="px-5 py-4">
+            <div class="flex justify-center space-x-2 data-phone-id='{{ $phone->id }}'">
               <a href={{ route('a_phones.edit', $phone->id) }} class="flex items-center justify-center p-1 rounded">
                   <i class="ph-bold ph-pencil text-2xl"></i>
               </a>
@@ -76,6 +91,7 @@
     </tbody>
   </table>
 </div>
+
 
 
 @endsection
